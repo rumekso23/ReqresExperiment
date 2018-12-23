@@ -21,7 +21,10 @@
         <activity
             android:name=".view.ListUserActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".view.ListResourceActivity"
+        <activity
+            android:name=".view.ListResourceActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".view.AddUserActivity"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

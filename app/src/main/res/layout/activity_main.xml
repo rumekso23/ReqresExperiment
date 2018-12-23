@@ -10,7 +10,7 @@
     <ImageView
         android:layout_marginTop="10dp"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/bg_reqres"/>
 
@@ -29,6 +29,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Resource"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_addUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add User"
         android:layout_gravity="center_horizontal"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
