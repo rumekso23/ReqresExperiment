@@ -13,10 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.kinocode.reqresexperiment.R;
-import com.kinocode.reqresexperiment.adapter.UserListAdapter;
+import com.kinocode.reqresexperiment.adapter.MultipleResourceAdapter;
 import com.kinocode.reqresexperiment.api.APIClient;
 import com.kinocode.reqresexperiment.api.APIInterface;
-import com.kinocode.reqresexperiment.model.UserList;
+import com.kinocode.reqresexperiment.model.MultipleResources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,28 +25,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListUserActivity extends AppCompatActivity {
+public class ListResourceActivity extends AppCompatActivity {
 
     APIInterface apiInterface;
 
-    UserListAdapter userListAdapter;
-    List<UserList.Datum> datumList;
-    RecyclerView rvListUser;
-    ProgressDialog progressDialog;
-
+    MultipleResourceAdapter multipleResourceAdapter;
     Spinner spinPage;
+    RecyclerView rvListResource;
+    List<MultipleResources.Datum> listResource;
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_user);
+        setContentView(R.layout.activity_list_resource);
 
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        spinPage = (Spinner) findViewById(R.id.spin_page);
-        rvListUser = (RecyclerView) findViewById(R.id.rv_listUser);
+        spinPage = (Spinner) findViewById(R.id.spin_page_r);
+        rvListResource = (RecyclerView) findViewById(R.id.rv_listResource);
 
         progressDialog = new ProgressDialog(this);
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         List<String> pages = new ArrayList<String>();
         pages.add("1");
@@ -63,38 +63,34 @@ public class ListUserActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
 
-                Call<UserList> apiService = apiInterface.doGetUserList(item);
-                apiService.enqueue(new Callback<UserList>() {
+                Call<MultipleResources> apiService = apiInterface.doGetListResources(item);
+                apiService.enqueue(new Callback<MultipleResources>() {
                     @Override
-                    public void onResponse(Call<UserList> call, Response<UserList> response) {
+                    public void onResponse(Call<MultipleResources> call, Response<MultipleResources> response) {
                         progressDialog.setMessage("Loading Data.. Please wait");
                         progressDialog.setIndeterminate(false);
                         progressDialog.setCancelable(false);
                         progressDialog.show();
 
                         if (response.isSuccessful()){
-
                             progressDialog.dismiss();
-                            datumList = response.body().getData();
-                            Log.d("TAG", "Response = " + datumList);
-                            userListAdapter = new UserListAdapter(getApplicationContext(), datumList);
+                            listResource = response.body().getData();
+                            Log.d("TAG", "Response = " + listResource);
+                            multipleResourceAdapter = new MultipleResourceAdapter(getApplicationContext(), listResource);
 
-                            RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(getApplicationContext());
-                            rvListUser.setLayoutManager(layoutmanager);
-                            rvListUser.setItemAnimator(new DefaultItemAnimator());
-                            rvListUser.setAdapter(userListAdapter);
+                            rvListResource.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            rvListResource.setItemAnimator(new DefaultItemAnimator());
+                            rvListResource.setAdapter(multipleResourceAdapter);
 
                         }
-
                     }
 
                     @Override
-                    public void onFailure(Call<UserList> call, Throwable t) {
+                    public void onFailure(Call<MultipleResources> call, Throwable t) {
                         Log.d("TAG", "Response Failure = " + t.toString());
                         progressDialog.dismiss();
                     }
                 });
-
             }
 
             @Override

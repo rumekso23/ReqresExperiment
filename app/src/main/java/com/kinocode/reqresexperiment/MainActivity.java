@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.kinocode.reqresexperiment.view.ListResourceActivity;
 import com.kinocode.reqresexperiment.view.ListUserActivity;
 
 
@@ -13,7 +14,7 @@ import com.kinocode.reqresexperiment.view.ListUserActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnListUser;
+    Button btnListUser, btnListResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btnListUser = (Button) findViewById(R.id.btn_listUser);
+        btnListResource = (Button) findViewById(R.id.btn_listResource);
+
         btnListUser.setOnClickListener(this);
+        btnListResource.setOnClickListener(this);
 
     }
 
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == btnListUser){
             startActivity(new Intent(this, ListUserActivity.class));
+        }else if (v == btnListResource){
+            startActivity(new Intent(this, ListResourceActivity.class));
         }
     }
 }

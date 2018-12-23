@@ -4,8 +4,6 @@ import com.kinocode.reqresexperiment.model.MultipleResources;
 import com.kinocode.reqresexperiment.model.User;
 import com.kinocode.reqresexperiment.model.UserList;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -16,8 +14,8 @@ import retrofit2.http.Query;
 
 public interface APIInterface {
 
-    @GET("/api/unknown")
-    Call<MultipleResources> doGetListResources();
+    @GET("/api/unknown?")
+    Call<MultipleResources> doGetListResources(@Query("page")String page);
 
     @POST("/api/users")
     Call<User> createUser(@Body User user);

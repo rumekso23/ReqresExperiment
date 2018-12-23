@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kinocode.reqresexperiment.R;
-import com.kinocode.reqresexperiment.model.Datum;
+import com.kinocode.reqresexperiment.model.UserList;
 
 import java.util.List;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyViewHolder> {
 
-    private List<Datum> datum;
+    private List<UserList.Datum> datum;
     private Context context;
 
 
-    public UserListAdapter(Context context, List<Datum> datum) {
+    public UserListAdapter(Context context, List<UserList.Datum> datum) {
         this.datum = datum;
         this.context = context;
 
@@ -36,7 +36,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
 
     @Override
     public void onBindViewHolder(UserListAdapter.MyViewHolder viewHolder, int position) {
-        Datum datums = datum.get(position);
+        UserList.Datum datums = datum.get(position);
         viewHolder.tvFirstname.setText(datums.getFirstName());
         viewHolder.tvLastname.setText(datums.getLastName());
         Glide.with(context)
