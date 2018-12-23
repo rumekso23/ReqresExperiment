@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_image_black_24dp"/>
+
+            <TextView
+                android:id="@+id/tv_firstname"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First Name" />
+
+            <TextView
+                android:id="@+id/tv_lastname"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/img_avatar"
+                android:layout_below="@+id/tv_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
